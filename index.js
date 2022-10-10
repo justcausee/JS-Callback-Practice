@@ -1,76 +1,29 @@
-// Currently in Step 4 BUT direction keys are not working
-
 const inventory = newInventory()
 move(inventory).to(0, 0)
 
 const character = newImage('assets/green-character/static.gif')
-let direction = null;
-move(character).to(100, 250)
-let x = 100;
-let y = 250;
 
-document.addEventListener('keydown', function(e){
-    if(e.repeat) return;
-
-    if(e.key === 'ArrowLeft'){
-        direction = 'west'
-    }
-    if(e.key === 'ArrowUp'){
-        direction = 'north'
-    }
-    if(e.key === 'ArrowRight'){
-        direction = 'east'
-    }
-    if(e.key === 'ArrowDown'){
-        direction = 'south'
-    }
-    callback(direction)
-})
-
-document.addEventListener('keyup', function (e){
-    direction = null
-    callback(direction)
-})
-
-function moveCharacter(){
-    if(direction === 'west'){
-        x = x - 1
-    }
-    if(direction === 'north'){
-        y = y + 1
-    }
-    if(direction === 'east'){
-        x = x + 1
-    }
-    if(direction === 'south'){
-        y = y - 1
-    }
-    character.style.left = x + 'px'
-    character.style.bottom = y + 'px'
-}
-
-// Character is not displaying any hand animation and not sure why. 
 function handleDirectionChange(direction){
     if(direction === null){
-        character.src = 'assets/green-character/static.gif'
+        character.src = `assets/green-character/static.gif`
     }
     if(direction === 'west'){
-        character.src = 'assets/green-character/west.gif'
+        character.src = `assets/green-character/west.gif`
     }
     if(direction === 'north'){
-        character.src = 'assets/green-character/north.gif'
+        character.src = `assets/green-character/north.gif`
     }
     if(direction === 'east'){
-        character.src = 'assets/green-character/east.gif'
+        character.src = `assets/green-character/east.gif`
     }
     if(direction === 'south'){
-        character.src = 'assets/green-character/south.gif'
+        character.src = `assets/green-character/south.gif`
     }
 }
 
 move(character).withArrowKeys(100, 250, handleDirectionChange)
 
-setInterval(moveCharacter, 1)
+
 
 move(newImage('assets/tree.png')).to(200, 450)
 move(newImage('assets/pillar.png')).to(350, 250)
@@ -80,42 +33,3 @@ move(newImage('assets/well.png')).to(500, 575)
 move(newItem('assets/sword.png')).to(500, 555)
 move(newItem('assets/shield.png')).to(165, 335)
 move(newItem('assets/staff.png')).to(600, 250)
-
-function move(element) {
-    element.style.position = 'fixed'
-
-    function moveToCoordinates(left, bottom) {
-        element.style.left = left + 'px'
-        element.style.bottom = bottom + 'px'
-    }
-
-    function moveWithArrowKeys(left, bottom, callback){
-       
-    }
-
-    return {
-        to: moveToCoordinates,
-        withArrowKeys: moveWithArrowKeys
-    }        
-}
-
-function handleDirectionChange(){
-    if(direction === null){
-        character.src = 'assets/green-character/static.gif'
-    }
-    if(direction === 'west'){
-        character.src = 'assets/green-character/west.gif'
-    }
-    if(direction === 'north'){
-        character.src = 'assets/green-character/north.gif'
-    }
-    if(direction === 'east'){
-        character.src = 'assets/green-character/east.gif'
-    }
-    if(direction === 'south'){
-        character.src = 'assets/green-character/south.gif'
-    }
-}
-
-move(character).withArrowKeys(100, 250, handleDirectionChange)
-
